@@ -6,7 +6,7 @@ import com.qa.persistence.domain.AdminUser;
 
 public interface AdminUserService {
 
-	AdminUser addAdminAccount(String userName, String password);
+	String addAdminAccount(String userName, String password);
 
 	Iterable<AdminUser> getAllAdminAccounts();
 
