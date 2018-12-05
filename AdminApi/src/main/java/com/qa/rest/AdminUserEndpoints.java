@@ -29,7 +29,7 @@ public class AdminUserEndpoints {
 	
 	
 	@GetMapping("${URL.method.getAdminAccount}")
-	public Optional<AdminUser> getAdminAccount(@PathVariable Long adminId) {
+	public Optional<AdminUser> getAdminAccount(@PathVariable("adminId") Long adminId) {
 		return service.getAdminAccount(adminId);
 	}
 	
@@ -41,7 +41,7 @@ public class AdminUserEndpoints {
 		}
 	
 	@DeleteMapping("${URL.method.deleteAdminAccount}")
-	public String deleteAdminAccount(@PathVariable Long adminId) {
+	public String deleteAdminAccount(@PathVariable("adminId") Long adminId) {
 		return service.deleteAdminAccount(adminId);
 	}
 	
