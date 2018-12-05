@@ -1,11 +1,9 @@
 package com.qa.persistence.domain;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
 public class AdminUser {
 
 	@Id
@@ -40,6 +38,11 @@ public class AdminUser {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	@Override
+	public String toString() {
+		return "PojoAccount [adminId=" + adminId + ", userName=" + userName + ", password=" + password + "]";
 	}
 
 }
