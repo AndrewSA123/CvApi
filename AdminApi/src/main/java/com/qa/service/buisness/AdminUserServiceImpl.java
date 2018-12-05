@@ -14,10 +14,13 @@ public class AdminUserServiceImpl implements AdminUserService {
 	@Autowired
 	private AdminUserRepository adminUserRepo;
 
+	private Long number = 0L;
 	
 
 	public String addAdminAccount(String userName, String password) {
 		AdminUser user = new AdminUser();
+		number++;
+		user.set_id(number);
 		user.setUserName(userName);
 		user.setPassword(password);
 		adminUserRepo.save(user);
