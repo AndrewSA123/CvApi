@@ -1,18 +1,18 @@
 package com.qa.persistence.domain;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+
 import javax.persistence.Id;
 
 public class AdminUser {
 
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long adminId;
 	private String userName;
 	private String password;
 
 	public AdminUser() {
+		
 
 	}
 
