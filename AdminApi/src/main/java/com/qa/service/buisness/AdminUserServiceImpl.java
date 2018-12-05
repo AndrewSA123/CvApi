@@ -17,10 +17,11 @@ public class AdminUserServiceImpl implements AdminUserService {
 	@Autowired
 	private AdminUser user;
 
-	public AdminUser addAdminAccount(String userName, String password) {
+	public String addAdminAccount(String userName, String password) {
 		user.setUserName(userName);
 		user.setPassword(password);
-		return adminUserRepo.save(user);
+		adminUserRepo.save(user);
+		return "Admin Account Added Successfully";
 	}
 
 	public Iterable<AdminUser> getAllAdminAccounts() {
