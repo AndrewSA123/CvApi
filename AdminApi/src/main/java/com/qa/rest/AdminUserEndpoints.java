@@ -21,32 +21,25 @@ public class AdminUserEndpoints {
 
 	@Autowired
 	private AdminUserService service;
-	
+
 	@GetMapping("${URL.method.getAllAdminAccounts}")
 	public Iterable<AdminUser> getAllAdminAccounts() {
 		return service.getAllAdminAccounts();
 	}
-	
-	
+
 	@GetMapping("${URL.method.getAdminAccount}")
 	public Optional<AdminUser> getAdminAccount(@PathVariable("adminId") Long adminId) {
 		return service.getAdminAccount(adminId);
 	}
-	
-	
+
 	@PostMapping("${URL.method.addAdminAccount}")
-	public String addCustomer(@PathVariable("userName") String userName,
-			@PathVariable("password") String password) {
+	public String addAdminAccount(@PathVariable("userName") String userName, @PathVariable("password") String password) {
 		return service.addAdminAccount(userName, password);
-		}
-	
+	}
+
 	@DeleteMapping("${URL.method.deleteAdminAccount}")
 	public String deleteAdminAccount(@PathVariable("adminId") Long adminId) {
 		return service.deleteAdminAccount(adminId);
 	}
-	
-	
-	
-	
-	
+
 }
