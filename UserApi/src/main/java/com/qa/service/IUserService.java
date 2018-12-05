@@ -6,13 +6,11 @@ import com.qa.peristence.domain.Users;
 
 public interface IUserService {
 
-	String createUser(Users username);
+	String createUser(String userName, String password, String email, String address, String firstName, String secondName);
 
 	Iterable<Users> getAllUsers();
 
 	String deleteUser(Long id);
-
-	Users updateUser(Long id, Users username);
 
 	Optional<Users> getUserById(Long id);
 
