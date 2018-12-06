@@ -15,7 +15,7 @@ public class ConsumeCVGenerator implements IConsumeCvGenerator {
 
 	@Override
 	public CV createCV(Binary cv) {
-		return rest.getForObject("Temp", CV.class);
+		return rest.getForObject("${endpoing.cv}", CV.class);
 	}
 
 }

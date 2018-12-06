@@ -17,24 +17,63 @@ public class User {
 	@Id
 	@Field("_id")
 	private Long id;
+	private String username;
+	private String password;
 	private String firstName;
 	private String lastName;
-	private Binary CV;
 	private List<CV> CVObject;
+	private List<String> taggedList;
+	private boolean flagged = false;
 
 	public User() {
 
 	}
 
-	public User(String firstName, String lastName) {
+	public User(String userName, String password, String firstName, String lastName) {
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.username = userName;
+		this.password = password;
 	}
 
-	public User(String firstName, String lastName, Binary CV) {
+	public User(String userName, String password, String firstName, String lastName, CV CV) {
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.CV = CV;
+		this.CVObject.add(CV);
+		this.username = userName;
+		this.password = password;
+	}	
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public boolean isFlagged() {
+		return flagged;
+	}
+
+	public void setFlagged(boolean flagged) {
+		this.flagged = flagged;
+	}
+
+	public List<String> getTaggedList() {
+		return taggedList;
+	}
+
+	public void setTaggedList(List<String> taggedList) {
+		this.taggedList = taggedList;
 	}
 
 	public Long getId() {
@@ -61,20 +100,23 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public Binary getCV() {
-		return CV;
-	}
-
-	public void setCV(Binary cV) {
-		CV = cV;
-	}
-
-	public List<CV> getCVObject() {
-		return CVObject;
+	public CV getCVObject(Long id) {
+		return CVObject.get(Math.toIntExact(id));
 	}
 
 	public void setCVObject(CV cVObject) {
 		CVObject.add(cVObject);
+	}
+	
+	public List<CV> getCVList() {
+		return CVObject;
+	}
+	public void setCvComment(Comment comment) {
+		for(CV cv : getCVList()) {
+			if(cv.getId() == comment.getCVID()) {
+				cv.setComment(comment);
+			}
+		}
 	}
 
 	@Override

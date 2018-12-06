@@ -6,6 +6,8 @@ import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.qa.persistence.domain.CV;
+import com.qa.persistence.domain.Comment;
 import com.qa.persistence.domain.User;
 import com.qa.persistence.repository.IMongoRepository;
 import com.qa.util.UserUtil;
@@ -25,6 +27,9 @@ public class UserService implements IUserService {
 
 	private Long id = 0l;
 	private Iterable<User> temp;
+	
+	private User foundUser;
+	private CV tempCv;
 
 	private Long setId() {
 		temp = getAllUsers();
@@ -33,7 +38,7 @@ public class UserService implements IUserService {
 				id = a.getId();
 			}
 		}
-		return id;
+		return id + 1;
 	}
 
 	@Override
@@ -68,6 +73,22 @@ public class UserService implements IUserService {
 	public User createCV(Long id, Binary CV) {
 		repo.findById(id).get().setCVObject(rest.createCV(CV));
 		return repo.findById(id).get();
+	}
+
+	@Override
+	public User createComment(Comment comment) {
+		
+		for(User user : getAllUsers()) {
+			for(CV cv : user.getCVList()) {
+				if(cv.getId() == comment.getCVID() && user.getCVList() != null) {
+					foundUser = repo.findById(user.getId()).get();
+					foundUser.setCvComment(comment);
+					return repo.save(foundUser);
+				}
+			}
+		}
+		
+		return null;
 	}
 
 }

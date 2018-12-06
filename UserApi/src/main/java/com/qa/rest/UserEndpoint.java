@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.qa.persistence.domain.Comment;
 import com.qa.persistence.domain.User;
 import com.qa.service.IUserService;
 
@@ -57,6 +58,12 @@ public class UserEndpoint implements IUserEndpoint {
 	@PostMapping("${endpoint.createcv}")
 	public User createCV(@PathVariable("id") Long id, @RequestBody Binary CV) {
 		return service.createCV(id, CV);
+	}
+
+	@Override
+	@PostMapping("${endpoint.createcomment}")
+	public User createComment(Comment comment) {
+		return service.createComment(comment);
 	}
 
 }

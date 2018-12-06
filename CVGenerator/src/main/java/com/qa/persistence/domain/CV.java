@@ -51,8 +51,8 @@ public class CV {
 		return comments;
 	}
 
-	public void setComment(Comment comment) {
-		this.comments.add(comment);
+	public void setComments(Comment comments) {
+		this.comments.add(comments);
 	}
 	
 	public Long getUser_id() {

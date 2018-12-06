@@ -1,8 +1,5 @@
 package com.qa.persistence.domain;
 
-import java.util.List;
-
-import org.bson.types.Binary;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -11,58 +8,41 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
-@Document(collection = "cv")
-public class CV {
+@Document(collection = "comments")
+public class Comment {
 
 	@Id
 	@Field("_id")
 	private Long id;
-	private Binary CV;
-	private List<Comment> comments;
-	private Long user_id;
-
-	public CV() {
-
-	}
-
-	public CV(Long id, Binary CV) {
-		this.CV = CV;
-		this.user_id = id;
-	}
-
+	private String comment;
+	private Long admin_id;
+	private Long CVID;
+	
+	
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	public Binary getCV() {
-		return CV;
+	public String getComment() {
+		return comment;
 	}
-
-	public void setCV(Binary cV) {
-		CV = cV;
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
-	
-
-	public List<Comment> getComments() {
-		return comments;
+	public Long getAdmin_id() {
+		return admin_id;
 	}
-
-	public void setComment(Comment comment) {
-		this.comments.add(comment);
+	public void setAdmin_id(Long admin_id) {
+		this.admin_id = admin_id;
 	}
-	
-	public Long getUser_id() {
-		return user_id;
+	public Long getCVID() {
+		return CVID;
 	}
-
-	public void setUser_id(Long user_id) {
-		this.user_id = user_id;
+	public void setCVID(Long cVID) {
+		CVID = cVID;
 	}
-
 	@Override
 	public String toString() {
 		ObjectMapper mapper = new ObjectMapper();
@@ -77,5 +57,5 @@ public class CV {
 
 		return jsonString;
 	}
-
+	
 }
