@@ -2,6 +2,9 @@ package com.qa.persistence.domain;
 
 import javax.persistence.Id;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class AdminUser {
 
 	@Id
