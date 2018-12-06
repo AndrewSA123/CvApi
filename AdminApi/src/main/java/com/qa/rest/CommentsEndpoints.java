@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.qa.persistence.domain.Comment;
 import com.qa.util.CommentsProducer;
 
 @CrossOrigin
@@ -18,9 +20,8 @@ public class CommentsEndpoints {
 	private CommentsProducer commentProd;
 
 	@PostMapping("${URL.method.addComment}")
-	public String addAdminAccount(@PathVariable("adminId") Long adminId, @PathVariable("userId") Long userId,
-			@PathVariable("cvId") Long cvId, @PathVariable("comment") String comment) {
-		return commentProd.produce(adminId, userId, cvId, comment);
+	public String addComment(@PathVariable("adminId") Long adminId, @RequestBody Comment comment) {
+		return commentProd.produce(adminId, comment);
 	}
 
 }
