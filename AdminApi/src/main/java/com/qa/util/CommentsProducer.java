@@ -6,27 +6,16 @@ import org.springframework.stereotype.Component;
 
 import com.qa.persistence.domain.Comment;
 
-
-
 @Component
 public class CommentsProducer {
-	
-	@Autowired
-	private Comment pojoComment;
-	
+
 	@Autowired
 	private JmsTemplate jmsTemplate;
 
-	private Long inc = 0L;
-	
-	public String produce(Long adminId, Long userId, Long cvId, String comment) {
-		inc++;
-		pojoComment.set_id(inc);
-		pojoComment.setAdminId(adminId);
-		pojoComment.setUserId(userId);
-		pojoComment.setCvId(cvId);
-		pojoComment.setComment(comment);
-		jmsTemplate.convertAndSend("CommentFromAdminUser", pojoComment);
+	public String produce(Long adminId, Comment comment) {
+		comment.setAdminId(adminId);
+		comment.setComment(comment.getComment());
+		jmsTemplate.convertAndSend("CommentFromAdminUser", comment);
 		return "Comment has been successfully sent";
 	}
 
