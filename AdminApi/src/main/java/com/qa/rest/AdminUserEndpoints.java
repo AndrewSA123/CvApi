@@ -15,7 +15,7 @@ import com.qa.persistence.domain.AdminUser;
 import com.qa.service.buisness.AdminUserService;
 
 @CrossOrigin
-@RequestMapping("${URL.base}")
+@RequestMapping("${URL.base.adminAccount}")
 @RestController
 public class AdminUserEndpoints {
 
