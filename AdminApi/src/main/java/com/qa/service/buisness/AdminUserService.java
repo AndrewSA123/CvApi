@@ -11,7 +11,10 @@ public interface AdminUserService {
 	Iterable<AdminUser> getAllAdminAccounts();
 
 	Optional<AdminUser> getAdminAccount(Long adminId);
+	
+	String updateAdminAccount(Long adminId, String userName, String password);
 
 	String deleteAdminAccount(Long adminId);
+
 
 }
