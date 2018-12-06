@@ -13,7 +13,7 @@ public class CommentSender {
 	
 	public String send(Long adminId, Long userId, Long cvId, String comment) {
 	
-		rest.postForEntity("url to post to/"+adminId +"/"+userId +"/" + cvId, comment, String.class);
+		rest.postForEntity("LocalH/"+adminId +"/"+userId +"/" + cvId, comment, String.class);
 		return "Comment has been successfully sent";
 	}
 
