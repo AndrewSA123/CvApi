@@ -36,6 +36,11 @@ public class AdminUserEndpoints {
 	public String addAdminAccount(@PathVariable("userName") String userName, @PathVariable("password") String password) {
 		return service.addAdminAccount(userName, password);
 	}
+	
+	@PostMapping("${URL.method.updateAdminAccount}")
+	public String updateAdminAccount(@PathVariable("adminId") Long adminId, @PathVariable("userName") String userName, @PathVariable("password") String password) {
+		return service.updateAdminAccount(adminId, userName, password);
+	}
 
 	@DeleteMapping("${URL.method.deleteAdminAccount}")
 	public String deleteAdminAccount(@PathVariable("adminId") Long adminId) {
