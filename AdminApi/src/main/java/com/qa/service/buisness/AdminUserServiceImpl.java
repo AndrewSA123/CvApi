@@ -13,17 +13,19 @@ public class AdminUserServiceImpl implements AdminUserService {
 
 	@Autowired
 	private AdminUserRepository adminUserRepo;
+	
+	@Autowired
+	private AdminUser adminUser;
 
 	private Long number = 0L;
-	
 
 	public String addAdminAccount(String userName, String password) {
-		AdminUser user = new AdminUser();
+		
 		number++;
-		user.set_id(number);
-		user.setUserName(userName);
-		user.setPassword(password);
-		adminUserRepo.save(user);
+		adminUser.set_id(number);
+		adminUser.setUserName(userName);
+		adminUser.setPassword(password);
+		adminUserRepo.save(adminUser);
 		return "Admin Account Added Successfully";
 	}
 
@@ -34,6 +36,19 @@ public class AdminUserServiceImpl implements AdminUserService {
 	public Optional<AdminUser> getAdminAccount(Long adminId) {
 		return adminUserRepo.findById(adminId);
 	}
+	
+	public String updateAdminAccount(Long adminId, String userName, String password) {
+		
+		adminUser.set_id(adminId);
+		adminUser.setUserName(userName);
+		adminUser.setPassword(password);
+		adminUserRepo.save(adminUser);
+		
+	
+		return "Admin Account has been successfully updated";
+	}
+	
+	
 
 	public String deleteAdminAccount(Long adminId) {
 		adminUserRepo.deleteById(adminId);
