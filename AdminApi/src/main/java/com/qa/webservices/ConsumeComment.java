@@ -10,8 +10,8 @@ public class ConsumeComment implements IConsumeComment{
 	private RestTemplate rest;
 	
 	@Override
-	public String sendComment(Long id, String comment) {
-		return rest.postForObject("" + "/" + id, comment, String.class);
+	public String sendComment(Long admin_id, Long user_id, String comment) {
+		return rest.postForObject("${endpoint.comsume}" + "/" + admin_id + "/" + user_id, comment, String.class);
 	}
 
 }

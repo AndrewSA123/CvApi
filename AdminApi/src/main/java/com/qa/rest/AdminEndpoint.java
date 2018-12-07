@@ -35,8 +35,8 @@ public class AdminEndpoint implements IAdminEndpoint{
 
 	@Override
 	@PutMapping("${endpoint.update}")
-	public Admin updateAdmin(@PathVariable("id") Long id, @RequestBody Admin newAdmin) {
-		return service.updateAdmin(id, newAdmin);
+	public Admin updateAdmin(@PathVariable("admin_id") Long admin_id, @RequestBody Admin newAdmin) {
+		return service.updateAdmin(admin_id, newAdmin);
 	}
 
 	@Override
@@ -53,8 +53,8 @@ public class AdminEndpoint implements IAdminEndpoint{
 
 	@Override
 	@PostMapping("${endpoint.createcomment}")
-	public String createComment(@PathVariable("id") Long id, @RequestBody String comment) {
-		return service.createComment(id, comment);
+	public String createComment(@PathVariable("id") Long admin_id, @PathVariable("user_id") Long user_id, @RequestBody String comment) { 
+		return service.createComment(admin_id, user_id,  comment);
 	}
 
 }

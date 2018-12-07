@@ -61,7 +61,7 @@ public class UserEndpoint implements IUserEndpoint {
 	}
 
 	@Override
-	@PostMapping("${endpoint.createcomment}")
+	@PutMapping("${endpoint.createcomment}")
 	public User createComment(Comment comment) {
 		return service.createComment(comment);
 	}

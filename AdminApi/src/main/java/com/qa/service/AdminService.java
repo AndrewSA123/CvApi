@@ -51,8 +51,8 @@ public class AdminService implements IAdminService{
 	}
 
 	@Override
-	public String createComment(Long id, String comment) {
-		return rest.sendComment(id, comment);
+	public String createComment(Long admin_id, Long user_id, String comment) {
+		return rest.sendComment(admin_id, user_id, comment);
 	}
 
 }

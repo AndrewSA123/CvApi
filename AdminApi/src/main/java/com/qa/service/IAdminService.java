@@ -16,6 +16,6 @@ public interface IAdminService {
 	
 	public Optional<Admin> getAdmin(Long id);
 	
-	public String createComment(Long id, String comment);
+	public String createComment(Long admin_id, Long user_id, String comment);
 	
 }
