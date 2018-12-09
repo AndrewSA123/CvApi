@@ -3,6 +3,8 @@ package com.qa.rest;
 import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,7 +20,7 @@ public class CvEndpoint implements ICvEndpoint{
 	
 	@Override
 	@GetMapping("${endpoint.create}")
-	public CV createCV(Long id, Binary CV) {
+	public CV createCV(@PathVariable("id") Long id, @RequestBody Binary CV) {
 		return service.createCV(id, CV);
 	}
 

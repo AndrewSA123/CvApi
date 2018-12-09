@@ -6,6 +6,6 @@ import com.qa.persistence.domain.CV;
 
 public interface IConsumeCvGenerator {
 
-	public CV createCV(Binary cv);
+	public CV createCV(Long id, Binary cv);
 
 }

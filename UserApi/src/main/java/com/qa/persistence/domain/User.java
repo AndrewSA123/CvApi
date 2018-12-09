@@ -2,7 +2,6 @@ package com.qa.persistence.domain;
 
 import java.util.List;
 
-import org.bson.types.Binary;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -10,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.qa.constants.UserConstants;
 
 @Document(collection = "users")
 public class User {
@@ -42,7 +42,7 @@ public class User {
 		this.CVObject.add(CV);
 		this.username = userName;
 		this.password = password;
-	}	
+	}
 
 	public String getUsername() {
 		return username;
@@ -107,16 +107,19 @@ public class User {
 	public void setCVObject(CV cVObject) {
 		CVObject.add(cVObject);
 	}
-	
+
 	public List<CV> getCVList() {
 		return CVObject;
 	}
-	public void setCvComment(Comment comment) {
-		for(CV cv : getCVList()) {
-			if(cv.getId() == comment.getCVID()) {
+
+	public String setCvComment(Comment comment) {
+		for (CV cv : getCVList()) {
+			if (cv.getId() == comment.getCVID()) {
 				cv.setComment(comment);
+				return UserConstants.CommentSet;
 			}
 		}
+		return UserConstants.CommentNotFound;
 	}
 
 	@Override
@@ -133,6 +136,5 @@ public class User {
 
 		return jsonString;
 	}
-
 
 }

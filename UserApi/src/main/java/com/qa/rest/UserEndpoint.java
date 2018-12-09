@@ -26,7 +26,7 @@ public class UserEndpoint implements IUserEndpoint {
 
 	@Override
 	@PostMapping("${endpoint.create}")
-	public User createUser(User user) {
+	public User createUser(@RequestBody User user) {
 		return service.createUser(user);
 	}
 

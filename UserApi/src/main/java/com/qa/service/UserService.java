@@ -6,6 +6,7 @@ import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.qa.constants.UserConstants;
 import com.qa.persistence.domain.CV;
 import com.qa.persistence.domain.Comment;
 import com.qa.persistence.domain.User;
@@ -27,9 +28,8 @@ public class UserService implements IUserService {
 
 	private Long id = 0l;
 	private Iterable<User> temp;
-	
+
 	private User foundUser;
-	private CV tempCv;
 
 	private Long setId() {
 		temp = getAllUsers();
@@ -43,15 +43,14 @@ public class UserService implements IUserService {
 
 	@Override
 	public User createUser(User user) {
-		setId();
-		user.setId(id);
-		return user;
+		user.setId(setId());
+		return repo.save(user);
 	}
 
 	@Override
 	public String deleteUser(Long id) {
 		repo.deleteById(id);
-		return "Successfully deleted user";
+		return UserConstants.userDeleted;
 	}
 
 	@Override
@@ -71,23 +70,25 @@ public class UserService implements IUserService {
 
 	@Override
 	public User createCV(Long id, Binary CV) {
-		repo.findById(id).get().setCVObject(rest.createCV(CV));
-		return repo.findById(id).get();
+		if (repo.findById(id).get().getCVList().size() < 3) {
+			repo.findById(id).get().setCVObject(rest.createCV(id, CV));
+			return repo.findById(id).get();
+		}
+		return null;
 	}
 
 	@Override
 	public User createComment(Comment comment) {
-		
-		for(User user : getAllUsers()) {
-			for(CV cv : user.getCVList()) {
-				if(cv.getId() == comment.getCVID() && user.getCVList() != null) {
+
+		for (User user : getAllUsers()) {
+			for (CV cv : user.getCVList()) {
+				if (cv.getId() == comment.getCVID() && user.getCVList() != null) {
 					foundUser = repo.findById(user.getId()).get();
 					foundUser.setCvComment(comment);
 					return repo.save(foundUser);
 				}
 			}
 		}
-		
 		return null;
 	}
 
