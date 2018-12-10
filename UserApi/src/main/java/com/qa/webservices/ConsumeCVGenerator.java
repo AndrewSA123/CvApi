@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.qa.constants.UserConstants;
 import com.qa.persistence.domain.CV;
 
 @RestController
@@ -14,8 +15,8 @@ public class ConsumeCVGenerator implements IConsumeCvGenerator {
 	private RestTemplate rest;
 
 	@Override
-	public CV createCV(Binary cv) {
-		return rest.getForObject("${endpoing.cv}", CV.class);
+	public CV createCV(Long id, Binary cv) {
+		return rest.postForObject(UserConstants.CvUrl, cv, CV.class);
 	}
 
 }
