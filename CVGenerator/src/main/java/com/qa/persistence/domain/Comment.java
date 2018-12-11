@@ -1,5 +1,7 @@
 package com.qa.persistence.domain;
 
+import java.io.Serializable;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -9,14 +11,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 @Document(collection = "comments")
-public class Comment {
+public class Comment implements Serializable{
 
 	@Id
 	@Field("_id")
 	private Long id;
 	private String comment;
 	private Long admin_id;
-	
 	
 	public Long getId() {
 		return id;

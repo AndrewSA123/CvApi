@@ -2,8 +2,8 @@ package com.qa.rest;
 
 import java.util.Optional;
 
-import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.qa.persistence.domain.Comment;
 import com.qa.persistence.domain.User;
 import com.qa.service.IUserService;
 
+@CrossOrigin
 @RestController
 @RequestMapping("${endpoint.base}")
 public class UserEndpoint implements IUserEndpoint {
@@ -26,7 +26,7 @@ public class UserEndpoint implements IUserEndpoint {
 
 	@Override
 	@PostMapping("${endpoint.create}")
-	public User createUser(@RequestBody User user) {
+	public String createUser(@RequestBody User user) {
 		return service.createUser(user);
 	}
 
@@ -44,7 +44,7 @@ public class UserEndpoint implements IUserEndpoint {
 
 	@Override
 	@PutMapping("${endpoint.update}")
-	public User updateUser(@PathVariable("id") Long id, @RequestBody User user) {
+	public String updateUser(@PathVariable("id") Long id, @RequestBody User user) {
 		return service.updateUser(id, user);
 	}
 
@@ -52,18 +52,6 @@ public class UserEndpoint implements IUserEndpoint {
 	@GetMapping("${endpoint.getall}")
 	public Iterable<User> getAllUsers() {
 		return service.getAllUsers();
-	}
-
-	@Override
-	@PostMapping("${endpoint.createcv}")
-	public User createCV(@PathVariable("id") Long id, @RequestBody Binary CV) {
-		return service.createCV(id, CV);
-	}
-
-	@Override
-	@PutMapping("${endpoint.createcomment}")
-	public User createComment(Comment comment) {
-		return service.createComment(comment);
 	}
 
 }

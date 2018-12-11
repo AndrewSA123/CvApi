@@ -1,18 +1,21 @@
 package com.qa.persistence.domain;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
-@Document("admin")
+@Entity(name="admin")
 public class Admin {
 	
 	@Id
-	@Field("_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String userName;
 	private String password;

@@ -1,15 +1,18 @@
 package com.qa.service;
 
-import org.bson.types.Binary;
+import java.io.IOException;
+
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.qa.persistence.domain.CV;
+
 @Service
 public class CvService implements ICvService{
 
 	@Override
-	public CV createCV(Long id, Binary CV) {
-		return new CV(id, CV);
+	public CV createCV(Long id, MultipartFile CV) throws IOException {
+		return new CV(id, CV.getOriginalFilename(), CV.getInputStream());
 	}
 
 }

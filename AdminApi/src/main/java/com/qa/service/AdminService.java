@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.qa.persistence.domain.Admin;
-import com.qa.persistence.repository.IMongoRepository;
+import com.qa.persistence.repository.IMySqlRepository;
 import com.qa.util.AdminUtil;
 import com.qa.webservices.IConsumeComment;
 @Service
@@ -16,7 +16,7 @@ public class AdminService implements IAdminService{
 	private AdminUtil util;
 	
 	@Autowired
-	private IMongoRepository repo;
+	private IMySqlRepository repo;
 	
 	@Autowired
 	private IConsumeComment rest;

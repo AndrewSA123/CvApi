@@ -1,47 +1,43 @@
 package com.qa.persistence.domain;
 
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.qa.constants.UserConstants;
-
-@Document(collection = "users")
-public class User {
+@Entity
+@Table(name="users")
+public class User{
 
 	@Id
-	@Field("_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String username;
 	private String password;
 	private String firstName;
 	private String lastName;
-	private List<CV> CVObject;
-	private List<String> taggedList;
+	private String email;
 	private boolean flagged = false;
 
 	public User() {
-
 	}
 
-	public User(String userName, String password, String firstName, String lastName) {
+	public User(String userName, String password, String firstName, String lastName, String email) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.username = userName;
 		this.password = password;
+		this.email = email;
 	}
 
-	public User(String userName, String password, String firstName, String lastName, CV CV) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.CVObject.add(CV);
-		this.username = userName;
-		this.password = password;
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getUsername() {
@@ -68,14 +64,6 @@ public class User {
 		this.flagged = flagged;
 	}
 
-	public List<String> getTaggedList() {
-		return taggedList;
-	}
-
-	public void setTaggedList(List<String> taggedList) {
-		this.taggedList = taggedList;
-	}
-
 	public Long getId() {
 		return id;
 	}
@@ -98,43 +86,6 @@ public class User {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-
-	public CV getCVObject(Long id) {
-		return CVObject.get(Math.toIntExact(id));
-	}
-
-	public void setCVObject(CV cVObject) {
-		CVObject.add(cVObject);
-	}
-
-	public List<CV> getCVList() {
-		return CVObject;
-	}
-
-	public String setCvComment(Comment comment) {
-		for (CV cv : getCVList()) {
-			if (cv.getId() == comment.getCVID()) {
-				cv.setComment(comment);
-				return UserConstants.CommentSet;
-			}
-		}
-		return UserConstants.CommentNotFound;
-	}
-
-	@Override
-	public String toString() {
-		ObjectMapper mapper = new ObjectMapper();
-
-		String jsonString = "";
-		try {
-			mapper.enable(SerializationFeature.INDENT_OUTPUT);
-			jsonString = mapper.writeValueAsString(this);
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-
-		return jsonString;
 	}
 
 }

@@ -12,7 +12,8 @@ public class ConsumeUsers implements IConsumeUsers{
 	
 	@Override
 	public CV createCv(CV cv) {
-		return rest.postForObject("${endpoint.consume}" + "/" + cv.getUser_id(), cv, CV.class);
+//		return rest.postForObject("${endpoint.consume}" + "/" + cv.getUser_id(), cv, CV.class);
+		return new CV();
 	}
 
 }
