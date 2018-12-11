@@ -3,6 +3,8 @@ package com.qa.rest;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -52,7 +54,7 @@ public class CvEndpoint implements ICvEndpoint{
 
 	@Override
 	@GetMapping("${endpoint.get}")
-	public byte[] getCv(@PathVariable("id") Long id) {
+	public ResponseEntity<ByteArrayResource> getCv(@PathVariable("id") Long id) {
 		return service.getCv(id);
 	}
 

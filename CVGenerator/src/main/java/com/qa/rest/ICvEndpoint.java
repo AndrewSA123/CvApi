@@ -2,6 +2,8 @@ package com.qa.rest;
 
 import java.io.IOException;
 
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.qa.persistence.domain.CV;
@@ -16,6 +18,6 @@ public interface ICvEndpoint {
 	
 	public Iterable<CV> getall();
 	
-	public byte[] getCv(Long id);
+	public ResponseEntity<ByteArrayResource> getCv(Long id);
 
 }

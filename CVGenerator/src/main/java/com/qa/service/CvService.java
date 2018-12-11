@@ -3,6 +3,9 @@ package com.qa.service;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -43,8 +46,10 @@ public class CvService implements ICvService{
 	}
 
 	@Override
-	public byte[] getCv(Long id) {
-		return repo.findById(id).get().getContents();
+	public ResponseEntity<ByteArrayResource> getCv(Long id) {
+		return ResponseEntity.ok()
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + repo.findById(id).get().getFileName() + "\"")
+				.body(new ByteArrayResource(repo.findById(id).get().getContents()));
 	}
 
 }
