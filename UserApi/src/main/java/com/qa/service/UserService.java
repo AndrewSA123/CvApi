@@ -28,8 +28,8 @@ public class UserService implements IUserService {
 	private Long setId() {
 		temp = getAllUsers();
 		for (User a : temp) {
-			if (a.getId() > id) {
-				id = a.getId();
+			if (a.getUser_id() > id) {
+				id = a.getUser_id();
 			}
 		}
 		return id + 1;
@@ -37,7 +37,7 @@ public class UserService implements IUserService {
 
 	@Override
 	public String createUser(User user) {
-		user.setId(setId());
+		user.setUser_id(setId());
 		repo.save(user);
 		return UserConstants.create;
 	}

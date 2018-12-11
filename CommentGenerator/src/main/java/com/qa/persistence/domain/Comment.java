@@ -1,32 +1,34 @@
 package com.qa.persistence.domain;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 
-@Document(collection = "comments")
+@Entity
+@Table(name = "comments")
 public class Comment {
 
 	@Id
-	@Field("_id")
-	private Long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long comment_id;
 	private String comment;
 	private Long admin_id;
-	private Long CVID;
+	private Long cv_id;
 	private Long user_id;
 	
 	public Comment() {
 		
 	}
 	
-	public Comment(Long admin_id, Long user_id, String comment) {
+	public Comment(Long admin_id, Long user_id, String comment, Long cv_id) {
 		this.admin_id = admin_id;
 		this.user_id = user_id;
 		this.comment = comment;
+		this.cv_id = cv_id;
 	}
 	
 	public Long getUser_id() {
@@ -35,12 +37,14 @@ public class Comment {
 	public void setUser_id(Long user_id) {
 		this.user_id = user_id;
 	}
-	public Long getId() {
-		return id;
+	public Long getComment_id() {
+		return comment_id;
 	}
-	public void setId(Long id) {
-		this.id = id;
+
+	public void setComment_id(Long comment_id) {
+		this.comment_id = comment_id;
 	}
+
 	public String getComment() {
 		return comment;
 	}
@@ -53,25 +57,14 @@ public class Comment {
 	public void setAdmin_id(Long admin_id) {
 		this.admin_id = admin_id;
 	}
-	public Long getCVID() {
-		return CVID;
-	}
-	public void setCVID(Long cVID) {
-		CVID = cVID;
-	}
-	@Override
-	public String toString() {
-		ObjectMapper mapper = new ObjectMapper();
 
-		String jsonString = "";
-		try {
-			mapper.enable(SerializationFeature.INDENT_OUTPUT);
-			jsonString = mapper.writeValueAsString(this);
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-
-		return jsonString;
+	public Long getCv_id() {
+		return cv_id;
 	}
+
+	public void setCv_id(Long cv_id) {
+		this.cv_id = cv_id;
+	}
+
 	
 }

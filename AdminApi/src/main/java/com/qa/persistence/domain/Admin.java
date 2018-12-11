@@ -5,50 +5,58 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-
-@Entity(name="admin")
+@Entity
+@Table(name="admins")
 public class Admin {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private String userName;
+	private Long admin_id;
+	private String username;
 	private String password;
 	private String firstName;
 	private String lastName;
+	private String email;
 	private boolean isSuperAdmin = false;
 	
 	public Admin() {
 		
 	}
 	
-	public Admin(String username, String password, String firstname, String lastname, boolean perms) {
-		this.userName = username;
+	public Admin(String username, String password, String firstname, String lastname, String email, boolean perms) {
+		this.username = username;
 		this.password = password;
 		this.firstName = firstname;
 		this.lastName = lastname;
 		this.isSuperAdmin = perms;
+		this.email = email;
 	}
 
-	public Long getId() {
-		return id;
+
+	public String getEmail() {
+		return email;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public String getUserName() {
-		return userName;
+	public Long getAdmin_id() {
+		return admin_id;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setAdmin_id(Long admin_id) {
+		this.admin_id = admin_id;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -81,21 +89,6 @@ public class Admin {
 
 	public void setSuperAdmin(boolean isSuperAdmin) {
 		this.isSuperAdmin = isSuperAdmin;
-	}
-	
-	@Override
-	public String toString() {
-		ObjectMapper mapper = new ObjectMapper();
-
-		String jsonString = "";
-		try {
-			mapper.enable(SerializationFeature.INDENT_OUTPUT);
-			jsonString = mapper.writeValueAsString(this);
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-
-		return jsonString;
 	}
 
 }

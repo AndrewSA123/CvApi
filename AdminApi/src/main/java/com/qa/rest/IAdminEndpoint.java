@@ -6,16 +6,14 @@ import com.qa.persistence.domain.Admin;
 
 public interface IAdminEndpoint {
 	
-	public Admin createAdmin(Long id, Admin admin);
+	public String createAdmin(Long id, Admin admin);
 	
 	public String deleteAdmin(Long id);
 	
-	public Admin updateAdmin(Long id, Admin newAdmin);
+	public String updateAdmin(Long id, Admin newAdmin);
 	
 	public Iterable<Admin> getAllAdmins();
 	
 	public Optional<Admin> getAdmin(Long id);
-	
-	public String createComment(Long admin_id, Long user_id, String comment);
 
 }

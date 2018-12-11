@@ -4,6 +4,14 @@ import com.qa.persistence.domain.Comment;
 
 public interface ICommentEndpoint {
 	
-	public Comment createComment(Long admin_id, Long user_id, String comment);
+	public String createComment(Comment comment);
+	
+	public String deleteComment(Long id);
+	
+	public String updateComment(Long id, Comment comment);
+	
+	public Comment getComment(Long id);
+	
+	public Iterable<Comment> getAll();
 
 }
