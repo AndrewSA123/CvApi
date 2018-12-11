@@ -21,6 +21,7 @@ public class User{
 	private String email;
 	private boolean flagged = false;
 	private boolean enabled = true;
+	private String role = "User";
 
 	public User() {
 	}
@@ -32,6 +33,15 @@ public class User{
 		this.password = password;
 		this.email = email;
 	}
+	
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
 	public boolean isEnabled() {
 		return enabled;
 	}

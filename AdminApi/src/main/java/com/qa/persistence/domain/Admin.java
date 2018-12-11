@@ -21,6 +21,7 @@ public class Admin {
 	private String email;
 	private boolean isSuperAdmin = false;
 	private boolean enabled = true;
+	private String role = "Admin";
 	
 	public Admin() {
 		
@@ -35,6 +36,14 @@ public class Admin {
 		this.email = email;
 	}
 
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
 
 	public boolean isEnabled() {
 		return enabled;
