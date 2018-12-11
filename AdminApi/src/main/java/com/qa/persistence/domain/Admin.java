@@ -20,6 +20,7 @@ public class Admin {
 	private String lastName;
 	private String email;
 	private boolean isSuperAdmin = false;
+	private boolean enabled = true;
 	
 	public Admin() {
 		
@@ -34,6 +35,14 @@ public class Admin {
 		this.email = email;
 	}
 
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
 
 	public String getEmail() {
 		return email;

@@ -20,6 +20,7 @@ public class User{
 	private String lastName;
 	private String email;
 	private boolean flagged = false;
+	private boolean enabled = true;
 
 	public User() {
 	}
@@ -31,7 +32,13 @@ public class User{
 		this.password = password;
 		this.email = email;
 	}
-	
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
 
 	public Long getUser_id() {
 		return user_id;
