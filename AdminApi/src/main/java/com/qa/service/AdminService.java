@@ -31,7 +31,7 @@ public class AdminService implements IAdminService{
 	@Override
 	public String deleteAdmin(Long id) {
 		repo.deleteById(id);
-		return "Change me to a constant";
+		return AdminConstants.delete;
 	}
 
 	@Override
