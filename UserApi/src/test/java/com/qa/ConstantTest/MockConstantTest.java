@@ -5,13 +5,13 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 
-import com.qa.constants.CVConstants;
+import com.qa.constants.UserConstants;
 import com.qa.mockConstants.MockConstants;
 
 public class MockConstantTest {
 	
 	@InjectMocks
-	CVConstants userconst;
+	UserConstants userconst;
 	MockConstants mockconst;
 	
 	@Test

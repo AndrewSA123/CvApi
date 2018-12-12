@@ -30,14 +30,21 @@ public class CvService implements ICvService{
 
 	@Override
 	public String deleteCv(Long id) {
-		repo.deleteById(id);
-		return CvConstants.delete;
+		if(repo.findById(id).isPresent()) {
+			repo.deleteById(id);
+			return CvConstants.delete;
+		}
+		return CvConstants.fail;
 	}
 
 	@Override
 	public String updateCv(Long id, MultipartFile cv) throws IOException {
-		temp = new CV(id, cv.getOriginalFilename(), cv.getBytes());
-		return null;
+		if(repo.findById(id).isPresent()) {
+			temp = new CV(id, cv.getOriginalFilename(), cv.getBytes());
+			repo.save(temp);
+			return CvConstants.update;
+		}
+		return CvConstants.fail;
 	}
 
 	@Override

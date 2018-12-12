@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.qa.constants.CVConstants;
+import com.qa.constants.UserConstants;
 import com.qa.persistence.domain.User;
 import com.qa.persistence.repository.IMySqlRepository;
 import com.qa.util.UserUtil;
@@ -23,7 +23,6 @@ public class UserService implements IUserService {
 	private Long id = 0l;
 	private Iterable<User> temp;
 
-	private User foundUser;
 
 	private Long setId() {
 		temp = getAllUsers();
@@ -39,13 +38,16 @@ public class UserService implements IUserService {
 	public String createUser(User user) {
 		user.setUser_id(setId());
 		repo.save(user);
-		return CVConstants.create;
+		return UserConstants.create;
 	}
 
 	@Override
 	public String deleteUser(Long id) {
-		repo.deleteById(id);
-		return CVConstants.userDeleted;
+		if(repo.findById(id).isPresent()) {
+			repo.deleteById(id);
+			return UserConstants.userDeleted;
+		}
+		return UserConstants.UserNotFound;
 	}
 
 	@Override
@@ -55,8 +57,11 @@ public class UserService implements IUserService {
 
 	@Override
 	public String updateUser(Long id, User user) {
-		repo.save(util.updateUser(repo.findById(id).get(), user));
-		return CVConstants.update;
+		if(repo.findById(id).isPresent()) {
+			repo.save(util.updateUser(repo.findById(id).get(), user));
+			return UserConstants.update;
+		}
+		return UserConstants.UserNotFound;
 	}
 
 	@Override
