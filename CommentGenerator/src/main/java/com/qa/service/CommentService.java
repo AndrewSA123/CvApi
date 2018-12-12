@@ -22,16 +22,22 @@ public class CommentService implements ICommentService{
 
 	@Override
 	public String deleteComment(Long id) {
-		repo.deleteById(id);
-		return CommentConstants.delete;
+		if(repo.findById(id).isPresent()) {
+			repo.deleteById(id);
+			return CommentConstants.delete;
+		}
+		return CommentConstants.fail;
 	}
 
 	@Override
 	public String updateComment(Long id, Comment comment) {
-		temp = repo.findById(id).get();
-		temp = comment;
-		repo.save(temp);
-		return CommentConstants.update;
+		if(repo.findById(id).isPresent()) {
+			temp = repo.findById(id).get();
+			temp = comment;
+			repo.save(temp);
+			return CommentConstants.update;
+		}
+		return CommentConstants.fail;
 	}
 
 	@Override

@@ -1,6 +1,6 @@
 package com.qa.constants;
 
-public class CVConstants {
+public class UserConstants {
 
 	public static final String CommentSet = "Comment Set";
 
@@ -13,5 +13,7 @@ public class CVConstants {
 	public static final String create = "User successfully created";
 	
 	public static final String update = "User updated!";
+	
+	public static final String UserNotFound = "User does not exist";
 
 }

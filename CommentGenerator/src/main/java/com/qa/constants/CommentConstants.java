@@ -8,4 +8,5 @@ public class CommentConstants {
 	
 	public static final String update = "Comment updated";
 
+	public static final String fail = "Comment not found";
 }

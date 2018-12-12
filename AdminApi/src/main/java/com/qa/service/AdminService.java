@@ -30,14 +30,20 @@ public class AdminService implements IAdminService{
 
 	@Override
 	public String deleteAdmin(Long id) {
-		repo.deleteById(id);
-		return AdminConstants.delete;
+		if(repo.findById(id).isPresent()) {
+			repo.deleteById(id);
+			return AdminConstants.delete;
+		}
+		return AdminConstants.fail;
 	}
 
 	@Override
 	public String updateAdmin(Long id, Admin newAdmin) {
-		repo.save(util.updateAdmin(repo.findById(id).get(), newAdmin));
-		return AdminConstants.update;
+		if(repo.findById(id).isPresent()) {
+			repo.save(util.updateAdmin(repo.findById(id).get(), newAdmin));
+			return AdminConstants.update;
+		}
+		return AdminConstants.fail;
 	}
 
 	@Override
