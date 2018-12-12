@@ -1,0 +1,53 @@
+package com.qa.service;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.qa.constants.AdminConstants;
+import com.qa.persistence.domain.Admin;
+import com.qa.persistence.repository.IMySqlRepository;
+import com.qa.util.AdminUtil;
+@Service
+public class AdminService implements IAdminService{
+
+	@Autowired
+	private AdminUtil util;
+	
+	@Autowired
+	private IMySqlRepository repo;
+	
+	
+	@Override
+	public String createAdmin(Long id, Admin admin) {
+//		if(repo.findById(id).get().isSuperAdmin() == true) {
+			repo.save(admin);
+			return AdminConstants.create;
+//		}
+//		return AdminConstants.fail;
+	}
+
+	@Override
+	public String deleteAdmin(Long id) {
+		repo.deleteById(id);
+		return AdminConstants.delete;
+	}
+
+	@Override
+	public String updateAdmin(Long id, Admin newAdmin) {
+		repo.save(util.updateAdmin(repo.findById(id).get(), newAdmin));
+		return AdminConstants.update;
+	}
+
+	@Override
+	public Iterable<Admin> getAllAdmins() {
+		return repo.findAll();
+	}
+
+	@Override
+	public Optional<Admin> getAdmin(Long id) {
+		return repo.findById(id);
+	}
+
+}
