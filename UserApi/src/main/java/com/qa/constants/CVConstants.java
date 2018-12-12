@@ -1,6 +1,6 @@
 package com.qa.constants;
 
-public class UserConstants {
+public class CVConstants {
 
 	public static final String CommentSet = "Comment Set";
 

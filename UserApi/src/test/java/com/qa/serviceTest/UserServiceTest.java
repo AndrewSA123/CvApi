@@ -11,7 +11,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import com.qa.constants.UserConstants;
+import com.qa.constants.CVConstants;
 import com.qa.persistence.domain.User;
 import com.qa.service.IUserService;
 
@@ -49,20 +49,20 @@ public class UserServiceTest {
 
 	@Test
 	public void testCreateUser() {
-		Mockito.when(service.createUser(MockUser)).thenReturn(UserConstants.create);
-		Assert.assertEquals(UserConstants.create, service.createUser(MockUser));
+		Mockito.when(service.createUser(MockUser)).thenReturn(CVConstants.create);
+		Assert.assertEquals(CVConstants.create, service.createUser(MockUser));
 	}
 
 	@Test
 	public void testDeleteUser() {
-		Mockito.when(service.deleteUser(MockUser.getUser_id())).thenReturn(UserConstants.userDeleted);
-		Assert.assertEquals(UserConstants.userDeleted, service.deleteUser(MockUser.getUser_id()));
+		Mockito.when(service.deleteUser(MockUser.getUser_id())).thenReturn(CVConstants.userDeleted);
+		Assert.assertEquals(CVConstants.userDeleted, service.deleteUser(MockUser.getUser_id()));
 	}
 
 	@Test
 	public void testUpdateUser() {
-		Mockito.when(service.updateUser(MockUser.getUser_id(), MockUser)).thenReturn(UserConstants.update);
-		Assert.assertEquals(UserConstants.update, service.updateUser(MockUser.getUser_id(), MockUser));
+		Mockito.when(service.updateUser(MockUser.getUser_id(), MockUser)).thenReturn(CVConstants.update);
+		Assert.assertEquals(CVConstants.update, service.updateUser(MockUser.getUser_id(), MockUser));
 	}
 
 }
