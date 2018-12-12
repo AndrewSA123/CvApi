@@ -49,4 +49,72 @@ public class UserApiApplicationTests {
 		assertEquals(user.getLastName(),"Clifford");
 	}
 	
+	@Test
+	public void testSetRole() {
+		user.setRole("User");
+		assertEquals(user.getRole(), "User");
+	}
+	
+	@Test
+	public void testSetEnabledTrue() {
+		user.setEnabled(true);
+		assertEquals(user.isEnabled(), true);
+	}
+	
+	@Test
+	public void testSetEnabledFalse() {
+		user.setEnabled(false);
+		assertEquals(user.isEnabled(), false);
+	}
+	
+	@Test
+	public void testSetUserID() {
+		user.setUser_id(5L);
+		assertEquals(user.getUser_id().toString(), "5");
+	}
+	
+	@Test
+	public void testSetEmail() {
+		user.setEmail("Tadas@CV.com");
+		assertEquals(user.getEmail(), "Tadas@CV.com");
+	}
+	
+	@Test
+	public void testSetUserName() {
+		user.setUsername("TadasQA");
+		assertEquals(user.getUsername(), "TadasQA");
+	}
+	
+	@Test
+	public void testSetPassword() {
+		user.setPassword("password");
+		assertEquals(user.getPassword(), "password");
+	}
+	
+	@Test
+	public void testSetFlaggedTrue() {
+		user.setFlagged(true);
+		assertEquals(user.isFlagged(), true);
+	}
+	
+	@Test
+	public void testSetFlaggedFalse() {
+		user.setFlagged(false);
+		assertEquals(user.isFlagged(), false);
+	}
+	
+	@Test
+	public void testSetFirstName() {
+		user.setFirstName("Tadas");
+		assertEquals(user.getFirstName(), "Tadas");
+	}
+	
+	@Test
+	public void testLastName() {
+		user.setLastName("QAC");
+		assertEquals(user.getLastName(), "QAC");
+	}
+	
+	
+	
 }
