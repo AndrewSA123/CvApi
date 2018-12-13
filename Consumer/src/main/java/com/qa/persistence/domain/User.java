@@ -1,42 +1,39 @@
 package com.qa.persistence.domain;
 
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
-@Table(name="admins")
-public class Admin {
-	
+@Table(name="users")
+public class User{
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long admin_id;
+	private Long user_id;
 	private String username;
 	private String password;
 	private String firstName;
 	private String lastName;
 	private String email;
-	private boolean isSuperAdmin = false;
+	private boolean flagged = false;
 	private boolean enabled = true;
-	private String role = "ROLE_ADMIN";
-	
-	public Admin() {
-		
+	private String role = "User";
+
+	public User() {
 	}
-	
-	public Admin(String username, String password, String firstname, String lastname, String email, boolean perms) {
-		this.username = username;
+
+	public User(String userName, String password, String firstName, String lastName, String email) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.username = userName;
 		this.password = password;
-		this.firstName = firstname;
-		this.lastName = lastname;
-		this.isSuperAdmin = perms;
 		this.email = email;
 	}
-
-
+	
 	public String getRole() {
 		return role;
 	}
@@ -53,20 +50,20 @@ public class Admin {
 		this.enabled = enabled;
 	}
 
+	public Long getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(Long user_id) {
+		this.user_id = user_id;
+	}
+
 	public String getEmail() {
 		return email;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public Long getAdmin_id() {
-		return admin_id;
-	}
-
-	public void setAdmin_id(Long admin_id) {
-		this.admin_id = admin_id;
 	}
 
 	public String getUsername() {
@@ -85,6 +82,14 @@ public class Admin {
 		this.password = password;
 	}
 
+	public boolean isFlagged() {
+		return flagged;
+	}
+
+	public void setFlagged(boolean flagged) {
+		this.flagged = flagged;
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -99,14 +104,6 @@ public class Admin {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-
-	public boolean isSuperAdmin() {
-		return isSuperAdmin;
-	}
-
-	public void setSuperAdmin(boolean isSuperAdmin) {
-		this.isSuperAdmin = isSuperAdmin;
 	}
 
 }
