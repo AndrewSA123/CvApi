@@ -5,10 +5,6 @@ import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-import com.qa.persistence.domain.Admin;
-import com.qa.persistence.domain.CV;
-import com.qa.persistence.domain.Comment;
-import com.qa.persistence.domain.User;
 import com.qa.service.IServiceLayer;
 
 @Component
