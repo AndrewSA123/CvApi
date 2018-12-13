@@ -1,6 +1,7 @@
 package com.qa.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.qa.constants.ConsumerConstants;
 import com.qa.persistence.domain.Admin;
@@ -11,7 +12,7 @@ import com.qa.persistence.repository.IAdminRepo;
 import com.qa.persistence.repository.ICommentRepo;
 import com.qa.persistence.repository.ICvRepo;
 import com.qa.persistence.repository.IUserRepo;
-
+@Service
 public class ServiceLayer implements IServiceLayer{
 
 	@Autowired
