@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.qa.constants.CvConstants;
 import com.qa.persistence.domain.CV;
 import com.qa.persistence.repository.IMySqlRepository;
+import com.qa.service.producer.Producer;
 
 @Service
 public class CvService implements ICvService{
@@ -21,9 +22,13 @@ public class CvService implements ICvService{
 	
 	private CV temp;
 	
+	@Autowired
+	private Producer producer;
+	
 	@Override
 	public String createCv(Long id, MultipartFile CV) throws IOException {
 		temp = new CV(id, CV.getOriginalFilename(), CV.getBytes());
+		producer.persistCv(temp);
 		repo.save(temp);
 		return CvConstants.create;
 	}

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.qa.constants.UserConstants;
 import com.qa.persistence.domain.User;
 import com.qa.persistence.repository.IMySqlRepository;
+import com.qa.service.producer.Producer;
 import com.qa.util.UserUtil;
 
 @Service
@@ -18,6 +19,9 @@ public class UserService implements IUserService {
 
 	@Autowired
 	private UserUtil util;
+	
+	@Autowired
+	private Producer producer;
 
 
 	private Long id = 0l;
@@ -38,6 +42,7 @@ public class UserService implements IUserService {
 	public String createUser(User user) {
 		user.setUser_id(setId());
 		repo.save(user);
+		producer.persistUser(user);
 		return UserConstants.create;
 	}
 

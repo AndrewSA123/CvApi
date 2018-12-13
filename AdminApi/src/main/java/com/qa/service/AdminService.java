@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.qa.constants.AdminConstants;
 import com.qa.persistence.domain.Admin;
 import com.qa.persistence.repository.IMySqlRepository;
+import com.qa.service.producer.Producer;
 import com.qa.util.AdminUtil;
 @Service
 public class AdminService implements IAdminService{
@@ -18,10 +19,13 @@ public class AdminService implements IAdminService{
 	@Autowired
 	private IMySqlRepository repo;
 	
+	@Autowired
+	private Producer producer;
 	
 	@Override
 	public String createAdmin(Long id, Admin admin) {
 //		if(repo.findById(id).get().isSuperAdmin() == true) {
+			producer.persistAdmin(admin);
 			repo.save(admin);
 			return AdminConstants.create;
 //		}

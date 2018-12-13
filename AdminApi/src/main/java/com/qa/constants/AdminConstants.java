@@ -9,4 +9,6 @@ public class AdminConstants {
 	public static final String fail = "Something went wrong";
 	
 	public static final String delete = "Admin successfully deleted";
+
+	public static final String queueName = "AdminQueue";
 }

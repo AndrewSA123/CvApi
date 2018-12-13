@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.qa.constants.CommentConstants;
 import com.qa.persistence.domain.Comment;
 import com.qa.persistence.repository.IMySqlRepository;
+import com.qa.service.producer.Producer;
 @Service
 public class CommentService implements ICommentService{
 	
@@ -14,8 +15,12 @@ public class CommentService implements ICommentService{
 	
 	private Comment temp;
 	
+	@Autowired
+	private Producer producer;
+	
 	@Override
 	public String createComment(Comment comment) {
+		producer.persistComment(comment);
 		repo.save(comment);
 		return CommentConstants.create;
 	}
