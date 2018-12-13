@@ -9,5 +9,7 @@ public class CvConstants {
 	public static final String delete = "Cv deleted";
 	
 	public static final String fail = "Cv not found";
+	
+	public static final String queueName = "CvQueue";
 
 }
