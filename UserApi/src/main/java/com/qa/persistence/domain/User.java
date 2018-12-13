@@ -21,7 +21,7 @@ public class User{
 	private String email;
 	private boolean flagged = false;
 	private boolean enabled = true;
-	private String role = "User";
+	private String role = "ROLE_USER";
 
 	public User() {
 	}
