@@ -21,7 +21,7 @@ public class Admin {
 	private String email;
 	private boolean isSuperAdmin = false;
 	private boolean enabled = true;
-	private String role = "Admin";
+	private String role = "ROLE_ADMIN";
 	
 	public Admin() {
 		
