@@ -23,7 +23,6 @@ public class CV implements Serializable {
 	private Long user_id;
 
 	public CV() {
-
 	}
 
 	public CV(Long id, String fileName, byte[] cv) throws IOException {
