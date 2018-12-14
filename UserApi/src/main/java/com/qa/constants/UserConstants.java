@@ -15,5 +15,7 @@ public class UserConstants {
 	public static final String update = "User updated!";
 	
 	public static final String UserNotFound = "User does not exist";
+	
+	public static final String queueName = "UserQueue";
 
 }

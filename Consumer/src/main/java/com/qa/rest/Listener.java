@@ -14,28 +14,29 @@ import com.qa.service.IServiceLayer;
 @Component
 @CrossOrigin
 public class Listener {
+	
 
 	@Autowired
 	private IServiceLayer service;
 	
 	@JmsListener(destination = "UserQueue", containerFactory = "jmsContainerFactory")
-	public String consumeUsers(User user) {
-		return service.createUser(user);
+	public String consumeUsers(String user) {
+		return service.createString(user);
 	}
 	
 	@JmsListener(destination = "AdminQueue", containerFactory = "jmsContainerFactory")
-	public String consumeAdmins(Admin admin) {
-		return service.createAdmin(admin);
+	public String consumeAdmins(String admin) {
+		return service.createString(admin);
 	}
 	
 	@JmsListener(destination = "CommentQueue", containerFactory = "jmsContainerFactory")
-	public String consumeComments(Comment comment) {
-		return service.createComment(comment);
+	public String consumeComments(String comment) {
+		return service.createString(comment);
 	}
 	
 	@JmsListener(destination = "CvQueue", containerFactory = "jmsContainerFactory")
-	public String consumeCvs(CV cv) {
-		return service.createCv(cv);
+	public String consumeCvs(String cv) {
+		return service.createString(cv);
 	}
 	
 }
