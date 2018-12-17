@@ -20,14 +20,20 @@ public class EmailService {
     @Value("${mail.username}")
     private String emailFrom;
 
+    @Value("${endpoint.emailsubject}")
+    private String emailSubject;
+
+    @Value("${endpoint.textbody}")
+    private String textBody;
+
     public void sendEmail(String sendTo, String whoChanged) throws MessagingException {
 
         SimpleMailMessage email = new SimpleMailMessage();
 
         email.setTo(sendTo);
-        email.setSubject("A tagged user has made a change");
+        email.setSubject(emailSubject);
         email.setFrom(emailFrom);
-        email.setText("User " + whoChanged + " has made a change");
+        email.setText(whoChanged + " " +textBody);
         javaMailSender.send(email);
 
     }

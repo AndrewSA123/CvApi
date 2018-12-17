@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.qa.util.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -35,6 +36,15 @@ public class CvEndpoint implements ICvEndpoint{
 
 	@Autowired
 	private EmailService emailService;
+
+	@Value("${endpoint.getemail}")
+	private String getEmailEndpoint;
+
+	@Value("${endpoint.getusername}")
+	private String getUsername;
+
+	@Value("${endpoint.gettags}")
+	private String getTags;
 
 	@Override
 	@PostMapping("${endpoint.create}")
@@ -71,11 +81,6 @@ public class CvEndpoint implements ICvEndpoint{
 		return service.getCv(id);
 	}
 
-//	private boolean taggedByAdmin(Long id) {
-//		int userInDbFlag = restTemplate.getForObject("localhost:8081/user/getflag/" + id, int.class);
-//		return userInDbFlag == 1;
-//	}
-
 	private void sendNotification(String tags, Long uId) {
 		String[] adminIds = tags.split("#");
 		for (int i = 1; i < adminIds.length; i++) {
@@ -84,13 +89,13 @@ public class CvEndpoint implements ICvEndpoint{
 	}
 
 	private void sendEmail(String id, Long uId){
-		String email = restTemplate.getForObject("http://localhost:8084/admin/getemail/"+id, String.class);
-		String traineeUsername = restTemplate.getForObject("http://localhost:8081/user/getusername/"+uId, String.class);
+		String email = restTemplate.getForObject(getEmailEndpoint+id, String.class);
+		String traineeUsername = restTemplate.getForObject(getUsername+uId, String.class);
 		emailService.sendEmail(email, traineeUsername);
 	}
 
 	private String getTags(Long id) {
-		return restTemplate.getForObject("http://localhost:8081/user/gettags/" + id, String.class);
+		return restTemplate.getForObject(getTags + id, String.class);
 	}
 
 
