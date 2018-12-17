@@ -26,7 +26,7 @@ public class EmailService {
 
         email.setTo(sendTo);
         email.setSubject("A tagged user has made a change");
-        email.setFrom("cvlibrary@null.net");
+        email.setFrom(emailFrom);
         email.setText("User " + whoChanged + " has made a change");
         javaMailSender.send(email);
 
