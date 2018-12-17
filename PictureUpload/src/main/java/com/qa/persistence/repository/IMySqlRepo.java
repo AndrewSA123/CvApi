@@ -12,7 +12,7 @@ import com.qa.persistence.domain.ProfilePicture;
 @Repository
 public interface IMySqlRepo extends CrudRepository<ProfilePicture, Long> {
 
-	@Query("SELECT p FROM ProfilePictures WHERE p.user_id = user_id")
+	@Query("SELECT p FROM ProfilePicture p WHERE p.user_id = :user_id")
 	public Optional<ProfilePicture> findPictureByUser(@Param("user_id") Long user_id);
 
 }

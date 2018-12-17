@@ -8,9 +8,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,18 +28,18 @@ public class PictureEndpoints implements IPictureEndpoints {
 
 	@Override
 	@PostMapping("${endpoint.create}")
-	public String createPicture(Long user_id, MultipartFile picture) throws IOException {
+	public String createPicture(@PathVariable("user_id") Long user_id, @RequestParam MultipartFile picture) throws IOException {
 		return service.createPicture(user_id, picture);
 	}
 
 	@Override
 	@PutMapping("${endpoint.update}")
-	public String updatePicture(Long user_id, MultipartFile picture) throws IOException {
+	public String updatePicture(@PathVariable("user_id") Long user_id, @RequestParam MultipartFile picture) throws IOException {
 		return service.updatePicture(user_id, picture);
 	}
 
 	@Override
-	@DeleteMapping("${ednpoint.delete}")
+	@DeleteMapping("${endpoint.delete}")
 	public String deletePicture(Long user_id) {
 		return service.deletePicture(user_id);
 	}
