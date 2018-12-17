@@ -16,4 +16,5 @@ public interface IAdminEndpoint {
 	
 	public Optional<Admin> getAdmin(Long id);
 
+	String getEmail(Long id);
 }

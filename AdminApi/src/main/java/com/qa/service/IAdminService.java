@@ -15,5 +15,7 @@ public interface IAdminService {
 	public Iterable<Admin> getAllAdmins();
 	
 	public Optional<Admin> getAdmin(Long id);
+
+	String getEmail(Long id);
 	
 }

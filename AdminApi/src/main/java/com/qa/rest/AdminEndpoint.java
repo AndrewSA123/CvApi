@@ -51,4 +51,8 @@ public class AdminEndpoint implements IAdminEndpoint{
 		return service.getAdmin(id);
 	}
 
+	@Override
+	@GetMapping("${endpoint.getemail}")
+	public String getEmail(@PathVariable("id") Long id){ return service.getEmail(id); }
+
 }

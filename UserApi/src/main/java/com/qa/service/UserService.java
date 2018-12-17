@@ -74,4 +74,48 @@ public class UserService implements IUserService {
 		return repo.findAll();
 	}
 
+	@Override
+	public String tagUser(Long uId, Long aId) {
+		Optional<User> user = repo.findById(uId);
+        String tags = user.get().getTags();
+        if(!tags.contains("#"+aId+"#")){
+            if(!tags.contains("#"+aId)){
+                tags += "#"+aId;
+            }
+        }
+        user.get().setTags(tags);
+        repo.save(user.get());
+		return UserConstants.userTagged;
+	}
+
+    @Override
+    public String untagUser(Long uId, Long aId) {
+	    Optional<User> user = repo.findById(uId);
+        String tags = user.get().getTags();
+
+        if(tags.contains("#"+aId+"#")){
+            tags = tags.replace("#"+aId+"#", "#");
+        }else if(tags.contains("#"+aId)){
+            tags = tags.replace("#"+aId, "");
+        }
+        user.get().setTags(tags);
+        repo.save(user.get());
+        return UserConstants.userUntagged;
+    }
+
+    @Override
+	public String getTags(Long id) {
+		Optional<User> user = repo.findById(id);
+		if(user.isPresent()){
+			return user.get().getTags();
+		}
+		return null; //throw exc
+	}
+
+    @Override
+    public String getUsername(Long id) {
+        return repo.findById(id).get().getUsername();
+    }
+
+
 }
