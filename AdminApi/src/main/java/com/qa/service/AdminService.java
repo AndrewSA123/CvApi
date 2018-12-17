@@ -60,4 +60,14 @@ public class AdminService implements IAdminService{
 		return repo.findById(id);
 	}
 
+
+	@Override
+	public String getEmail(Long id) {
+		Optional<Admin> admin = repo.findById(id);
+		if(admin.isPresent()){
+			return admin.get().getEmail();
+		}
+		return null; //exc
+	}
+
 }

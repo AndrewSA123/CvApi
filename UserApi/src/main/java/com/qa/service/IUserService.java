@@ -16,4 +16,10 @@ public interface IUserService {
 
 	public Iterable<User> getAllUsers();
 
+	String tagUser(Long uId, Long aId);
+
+	String getTags(Long id);
+
+    String getUsername(Long id);
+
 }

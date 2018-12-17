@@ -74,4 +74,25 @@ public class UserService implements IUserService {
 		return repo.findAll();
 	}
 
+	@Override
+	public String tagUser(Long uId, Long aId) {
+		Optional<User> user = repo.findById(uId);
+		user.ifPresent(u -> u.setTags(u.getTags() + aId + "#" ));
+		return "Tagged";
+	}
+
+	@Override
+	public String getTags(Long id) {
+		Optional<User> user = repo.findById(id);
+		if(user.isPresent()){
+			return user.get().getTags();
+		}
+		return null; //throw exc
+	}
+
+    @Override
+    public String getUsername(Long id) {
+        return repo.findById(id).get().getUsername();
+    }
+
 }

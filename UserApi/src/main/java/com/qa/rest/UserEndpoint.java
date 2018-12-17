@@ -54,4 +54,22 @@ public class UserEndpoint implements IUserEndpoint {
 		return service.getAllUsers();
 	}
 
+	@Override
+	@GetMapping("${endpoint.taguser}")
+	public String tagUser(@PathVariable("uId")Long uId, @PathVariable("aId")Long aId){
+		return service.tagUser(uId, aId);
+	}
+
+	@Override
+	@GetMapping("${endpoint.gettags}")
+	public String getTags(@PathVariable("id") Long id){
+		return service.getTags(id);
+	}
+
+    @Override
+    @GetMapping("${endpoint.getusername}")
+    public String getUsername(@PathVariable("id") Long id) {
+        return service.getUsername(id);
+    }
+
 }
