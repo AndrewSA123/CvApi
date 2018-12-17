@@ -40,13 +40,13 @@ public class PictureEndpoints implements IPictureEndpoints {
 
 	@Override
 	@DeleteMapping("${endpoint.delete}")
-	public String deletePicture(Long user_id) {
+	public String deletePicture(@PathVariable("user_id") Long user_id) {
 		return service.deletePicture(user_id);
 	}
 
 	@Override
 	@GetMapping("${endpoint.get}")
-	public ResponseEntity<ByteArrayResource> getPicture(Long id) {
+	public ResponseEntity<ByteArrayResource> getPicture(@PathVariable("user_id") Long id) {
 		return service.getPicture(id);
 	}
 
