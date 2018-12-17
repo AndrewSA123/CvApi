@@ -19,6 +19,7 @@ public class User{
 	private String firstName;
 	private String lastName;
 	private String email;
+	private String tags;
 	private boolean flagged = false;
 	private boolean enabled = true;
 	private String role = "ROLE_USER";
@@ -106,4 +107,11 @@ public class User{
 		this.lastName = lastName;
 	}
 
+	public String getTags() {
+		return tags;
+	}
+
+	public void setTags(String tags) {
+		this.tags = tags;
+	}
 }

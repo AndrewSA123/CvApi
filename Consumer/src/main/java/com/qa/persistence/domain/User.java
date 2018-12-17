@@ -20,6 +20,7 @@ public class User{
 	private String lastName;
 	private String email;
 	private boolean flagged = false;
+	private String tags;
 	private boolean enabled = true;
 	private String role = "User";
 

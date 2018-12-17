@@ -3,6 +3,7 @@ package com.qa.rest;
 import java.util.Optional;
 
 import com.qa.persistence.domain.User;
+import org.springframework.web.bind.annotation.PathVariable;
 
 public interface IUserEndpoint {
 
@@ -15,6 +16,13 @@ public interface IUserEndpoint {
 	public String updateUser(Long id, User user);
 
 	public Iterable<User> getAllUsers();
-	
+
+	String tagUser(Long uId, Long aId);
+
+	String untagUser(Long uId, Long aId);
+
+	String getTags(Long id);
+
+	String getUsername(Long id);
 
 }

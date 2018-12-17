@@ -2,7 +2,9 @@ package com.qa.rest;
 
 import java.io.IOException;
 
+import com.qa.util.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.qa.persistence.domain.CV;
@@ -27,10 +30,30 @@ public class CvEndpoint implements ICvEndpoint{
 
 	@Autowired
 	private ICvService service;
-	
+
+	@Autowired
+	private RestTemplate restTemplate;
+
+	@Autowired
+	private EmailService emailService;
+
+	@Value("${endpoint.getemail}")
+	private String getEmailEndpoint;
+
+	@Value("${endpoint.getusername}")
+	private String getUsername;
+
+	@Value("${endpoint.gettags}")
+	private String getTags;
+
 	@Override
 	@PostMapping("${endpoint.create}")
 	public String createCv(@PathVariable("id") Long id, @RequestParam MultipartFile CV) throws IOException {
+
+		String tags = getTags(id);
+
+		sendNotification(tags, id);
+
 		return service.createCv(id, CV);
 	}
 
@@ -57,5 +80,23 @@ public class CvEndpoint implements ICvEndpoint{
 	public ResponseEntity<ByteArrayResource> getCv(@PathVariable("id") Long id) {
 		return service.getCv(id);
 	}
+
+	private void sendNotification(String tags, Long uId) {
+		String[] adminIds = tags.split("#");
+		for (int i = 1; i < adminIds.length; i++) {
+			sendEmail(adminIds[i], uId);
+		}
+	}
+
+	private void sendEmail(String id, Long uId){
+		String email = restTemplate.getForObject(getEmailEndpoint+id, String.class);
+		String traineeUsername = restTemplate.getForObject(getUsername+uId, String.class);
+		emailService.sendEmail(email, traineeUsername);
+	}
+
+	private String getTags(Long id) {
+		return restTemplate.getForObject(getTags + id, String.class);
+	}
+
 
 }

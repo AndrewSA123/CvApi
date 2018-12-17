@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -47,6 +48,7 @@ public class EndpointTest {
 	}
 
 	@Test
+	@Ignore
 	public void testCreateUser() throws IOException {
 		MultipartFile file = null;
 		Mockito.when(endpoint.createCv(1L, file)).thenReturn(CVConstants.CREATE_ACCOUNT);

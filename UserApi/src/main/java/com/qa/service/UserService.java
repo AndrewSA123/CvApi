@@ -74,4 +74,63 @@ public class UserService implements IUserService {
 		return repo.findAll();
 	}
 
+	@Override
+	public String tagUser(Long uId, Long aId) {
+		Optional<User> user = repo.findById(uId);
+        String tags = user.get().getTags();
+
+        if(notYetTagged(tags, aId)){
+            tags += "#"+aId;
+            user.get().setTags(tags);
+        }
+
+        repo.save(user.get());
+		return UserConstants.userTagged;
+	}
+
+	private boolean notYetTagged(String tags, Long aId){
+        if(!tags.contains("#"+aId+"#")){
+            if(!tags.contains("#"+aId)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public String untagUser(Long uId, Long aId) {
+	    Optional<User> user = repo.findById(uId);
+        String tags = user.get().getTags();
+
+        tags = removeTag(tags, aId);
+
+        user.get().setTags(tags);
+        repo.save(user.get());
+        return UserConstants.userUntagged;
+    }
+
+    private String removeTag(String tags, Long aId){
+        if(tags.contains("#"+aId+"#")){
+            tags = tags.replace("#"+aId+"#", "#");
+        }else if(tags.contains("#"+aId)){
+            tags = tags.replace("#"+aId, "");
+        }
+        return tags;
+    }
+
+    @Override
+	public String getTags(Long id) {
+		Optional<User> user = repo.findById(id);
+		if(user.isPresent()){
+			return user.get().getTags();
+		}
+		return null;
+	}
+
+    @Override
+    public String getUsername(Long id) {
+        return repo.findById(id).get().getUsername();
+    }
+
+
 }
