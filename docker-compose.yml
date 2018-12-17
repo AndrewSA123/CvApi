@@ -1,0 +1,54 @@
+version: '3'
+services:
+  activemq:
+    container_name: activemq
+    image: bobcrutchley/activemq
+  mysql:
+    container_name: mysql
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_USER: gareth_clifford95
+      MYSQL_PASSWORD: password
+  adminapi:
+    container_name: AdminApi
+    build:
+      context: AdminApi
+      args:
+      - artifact_id=AdminApi
+      - version=0.0.1-SNAPSHOT
+  commentgenerator:
+    container_name: CommentGenerator
+    build:
+      context: CommentGenerator
+      args:
+      - artifact_id=CommentGenerator
+      - version=0.0.1-SNAPSHOT
+  cvgenerator:
+    container_name: CVGenerator
+    build:
+      context: CVGenerator
+      args:
+      - artifact_id=CVGenerator
+      - version=0.0.1-SNAPSHOT
+  pictureupload:
+    container_name: PictureUpload
+    build:
+      context: PictureUpload
+      args:
+      - artifact_id=PictureUpload
+      - version=0.0.1-SNAPSHOT
+  userapi:
+    container_name: UserApi
+    build:
+      context: UserApi
+      args:
+      - artifact_id=UserApi
+      - version=0.0.1-SNAPSHOT
+  consumer:
+    container_name: Consumer
+    build:
+      context: Consumer
+      args:
+      - artifact_id=Consumer
+      - version=0.0.1-SNAPSHOT
