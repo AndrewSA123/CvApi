@@ -85,7 +85,7 @@ public class UserService implements IUserService {
         }
         user.get().setTags(tags);
         repo.save(user.get());
-		return "Tagged";
+		return UserConstants.userTagged;
 	}
 
     @Override
@@ -100,7 +100,7 @@ public class UserService implements IUserService {
         }
         user.get().setTags(tags);
         repo.save(user.get());
-        return "User Untagged";
+        return UserConstants.userUntagged;
     }
 
     @Override

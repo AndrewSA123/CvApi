@@ -18,6 +18,10 @@ public class UserConstants {
 	
 	public static final String queueName = "UserQueue";
 
-	
+	public static final String userTagged = "Tagged";
+
+	public static final String userUntagged = "Untagged";
+
+
 
 }
