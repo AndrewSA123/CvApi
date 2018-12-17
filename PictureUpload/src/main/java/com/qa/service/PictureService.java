@@ -23,7 +23,7 @@ public class PictureService implements IPictureService {
 
 	@Override
 	public String createPicture(Long user_id, MultipartFile picture) throws IOException {
-		repo.save(new ProfilePicture(picture.getBytes(), user_id));
+		repo.save(new ProfilePicture(picture.getOriginalFilename(), picture.getBytes(), user_id));
 		return PictureConstants.create;
 	}
 
@@ -52,7 +52,7 @@ public class PictureService implements IPictureService {
 		if (repo.findPictureByUser(id).isPresent()) {
 			return ResponseEntity.ok()
 					.header(HttpHeaders.CONTENT_DISPOSITION,
-							"attachment; user_id=\"" + repo.findPictureByUser(id).get().getUser_id() + "\"")
+							"attachment; filename =\"" + repo.findPictureByUser(id).get().getPicture_name() + "\"")
 					.body(new ByteArrayResource(repo.findPictureByUser(id).get().getPicture()));
 		}
 		return (ResponseEntity<ByteArrayResource>) ResponseEntity.notFound();

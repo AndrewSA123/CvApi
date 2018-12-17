@@ -16,15 +16,26 @@ public class ProfilePicture {
 	private Long picture_id;
 	@Lob
 	private byte[] picture;
+	private String picture_name;
 	private Long user_id;
 
 	public ProfilePicture() {
 
 	}
 
-	public ProfilePicture(byte[] picture, Long id) {
+	public ProfilePicture(String name, byte[] picture, Long id) {
+		this.picture_name = name;
 		this.user_id = id;
 		this.picture = picture;
+	}
+
+	
+	public String getPicture_name() {
+		return picture_name;
+	}
+
+	public void setPicture_name(String picture_name) {
+		this.picture_name = picture_name;
 	}
 
 	public Long getPicture_id() {
