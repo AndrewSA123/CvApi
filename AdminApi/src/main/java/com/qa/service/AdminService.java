@@ -67,7 +67,7 @@ public class AdminService implements IAdminService{
 		if(admin.isPresent()){
 			return admin.get().getEmail();
 		}
-		return null; //exc
+		return null;
 	}
 
 }
