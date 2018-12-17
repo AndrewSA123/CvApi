@@ -18,6 +18,8 @@ public interface IUserService {
 
 	String tagUser(Long uId, Long aId);
 
+    String untagUser(Long uId, Long aId);
+
 	String getTags(Long id);
 
     String getUsername(Long id);

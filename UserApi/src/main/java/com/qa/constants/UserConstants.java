@@ -18,4 +18,6 @@ public class UserConstants {
 	
 	public static final String queueName = "UserQueue";
 
+	
+
 }

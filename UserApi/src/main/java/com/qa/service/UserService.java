@@ -77,11 +77,33 @@ public class UserService implements IUserService {
 	@Override
 	public String tagUser(Long uId, Long aId) {
 		Optional<User> user = repo.findById(uId);
-		user.ifPresent(u -> u.setTags(u.getTags() + aId + "#" ));
+        String tags = user.get().getTags();
+        if(!tags.contains("#"+aId+"#")){
+            if(!tags.contains("#"+aId)){
+                tags += "#"+aId;
+            }
+        }
+        user.get().setTags(tags);
+        repo.save(user.get());
 		return "Tagged";
 	}
 
-	@Override
+    @Override
+    public String untagUser(Long uId, Long aId) {
+	    Optional<User> user = repo.findById(uId);
+        String tags = user.get().getTags();
+
+        if(tags.contains("#"+aId+"#")){
+            tags = tags.replace("#"+aId+"#", "#");
+        }else if(tags.contains("#"+aId)){
+            tags = tags.replace("#"+aId, "");
+        }
+        user.get().setTags(tags);
+        repo.save(user.get());
+        return "User Untagged";
+    }
+
+    @Override
 	public String getTags(Long id) {
 		Optional<User> user = repo.findById(id);
 		if(user.isPresent()){
@@ -94,5 +116,6 @@ public class UserService implements IUserService {
     public String getUsername(Long id) {
         return repo.findById(id).get().getUsername();
     }
+
 
 }

@@ -61,6 +61,12 @@ public class UserEndpoint implements IUserEndpoint {
 	}
 
 	@Override
+    @PostMapping("${endpoint.untaguser}")
+    public String untagUser(@PathVariable("uId") Long uId, @PathVariable("aId") Long aId){
+	    return service.untagUser(uId, aId);
+    }
+
+	@Override
 	@GetMapping("${endpoint.gettags}")
 	public String getTags(@PathVariable("id") Long id){
 		return service.getTags(id);
