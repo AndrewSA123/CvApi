@@ -20,6 +20,6 @@ public interface ICvEndpoint {
 	
 	public ResponseEntity<ByteArrayResource> getCv(Long id);
 	
-	public ResponseEntity<ByteArrayResource> getCvByUser(Long user_id);
+	public Iterable<CV> getCvByUser(Long user_id);
 
 }

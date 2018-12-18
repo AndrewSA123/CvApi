@@ -13,6 +13,6 @@ import com.qa.persistence.domain.CV;
 public interface IMySqlRepository extends JpaRepository<CV, Long>{
 	
 	@Query("SELECT c FROM CV c WHERE c.user_id = :user_id")
-	public Optional<CV> getCvByUser(@Param("user_id") Long user_id);
+	public Iterable<CV> getCvByUser(@Param("user_id") Long user_id);
 
 }

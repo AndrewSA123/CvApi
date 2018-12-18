@@ -98,7 +98,7 @@ public class CvEndpoint implements ICvEndpoint{
 
 	@Override
 	@GetMapping("${endpoint.getbyuser}")
-	public ResponseEntity<ByteArrayResource> getCvByUser(@PathVariable("user_id") Long user_id) {
+	public Iterable<CV> getCvByUser(@PathVariable("user_id") Long user_id) {
 		return service.getCvByUser(user_id);
 	}
 
