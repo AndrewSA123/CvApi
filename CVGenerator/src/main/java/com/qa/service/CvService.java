@@ -36,8 +36,9 @@ public class CvService implements ICvService{
 
 	@Override
 	public String deleteCv(Long id) {
-		if(repo.findById(id).isPresent()) {
-			repo.deleteById(id);
+		Optional<CV> cv = repo.findById(id);
+		if(cv.isPresent()){
+			repo.delete(cv.get());
 			return CvConstants.delete;
 		}
 		return CvConstants.fail;
