@@ -3,7 +3,6 @@ package com.qa.rest;
 import java.util.Optional;
 
 import com.qa.persistence.domain.User;
-import org.springframework.web.bind.annotation.PathVariable;
 
 public interface IUserEndpoint {
 
@@ -24,5 +23,7 @@ public interface IUserEndpoint {
 	String getTags(Long id);
 
 	String getUsername(Long id);
+
+	public Optional<User> getUserByUserName(String username);
 
 }

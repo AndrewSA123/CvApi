@@ -78,4 +78,10 @@ public class UserEndpoint implements IUserEndpoint {
         return service.getUsername(id);
     }
 
+	@Override
+	@GetMapping("${endpoint.getbyusername}")
+	public Optional<User> getUserByUserName(@PathVariable("username") String username) {
+		return service.getUserByUserName(username);
+	}
+
 }

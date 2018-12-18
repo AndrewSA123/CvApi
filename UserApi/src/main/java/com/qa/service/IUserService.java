@@ -24,4 +24,6 @@ public interface IUserService {
 
     String getUsername(Long id);
 
+	public Optional<User> getUserByUserName(String username);
+
 }

@@ -22,6 +22,7 @@ public class UserConstants {
 
 	public static final String userUntagged = "Untagged";
 
+	public static final String userPresent = "User Already Created";
 
 
 }

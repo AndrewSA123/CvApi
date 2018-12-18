@@ -40,6 +40,9 @@ public class UserService implements IUserService {
 
 	@Override
 	public String createUser(User user) {
+		if (repo.getByUserName(user.getUsername()).isPresent()) {
+			return UserConstants.userPresent;
+		}
 		user.setUser_id(setId());
 		repo.save(user);
 		producer.persistUser(user);
@@ -132,5 +135,12 @@ public class UserService implements IUserService {
         return repo.findById(id).get().getUsername();
     }
 
+	@Override
+	public Optional<User> getUserByUserName(String username) {
+		if (repo.getByUserName(username).isPresent()) {
+			return repo.getByUserName(username);
+		}
+		return null;
+	}
 
 }
