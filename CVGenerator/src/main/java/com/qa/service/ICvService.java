@@ -20,4 +20,5 @@ public interface ICvService {
 	
 	public ResponseEntity<ByteArrayResource> getCv(Long id);
 	
+	public ResponseEntity<ByteArrayResource> getCvByUser(Long user_id);
 }

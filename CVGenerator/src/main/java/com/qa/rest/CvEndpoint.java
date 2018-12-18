@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -49,11 +48,10 @@ public class CvEndpoint implements ICvEndpoint{
 	@Override
 	@PostMapping("${endpoint.create}")
 	public String createCv(@PathVariable("id") Long id, @RequestParam MultipartFile CV) throws IOException {
-
 		String tags = getTags(id);
-
-		if(!tags.equals("")){ sendNotification(tags, id); }
-
+		if (!tags.equals("") && tags != null) {
+			sendNotification(tags, id);
+		}
 		return service.createCv(id, CV);
 	}
 

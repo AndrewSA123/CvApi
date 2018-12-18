@@ -66,4 +66,15 @@ public class CvService implements ICvService{
 				.body(new ByteArrayResource(repo.findById(id).get().getContents()));
 	}
 
+	@Override
+	public ResponseEntity<ByteArrayResource> getCvByUser(Long user_id) {
+		if(repo.getCvByUser(user_id).isPresent()) {
+			return ResponseEntity.ok()
+					.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + repo.getCvByUser(user_id).get().getFileName() + "\"")
+					.body(new ByteArrayResource(repo.getCvByUser(user_id).get().getContents()));
+		}
+		return (ResponseEntity<ByteArrayResource>) ResponseEntity.badRequest();
+		
+	}
+
 }
