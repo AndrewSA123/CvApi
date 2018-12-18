@@ -1,6 +1,7 @@
 package com.qa.service;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
@@ -35,8 +36,9 @@ public class CvService implements ICvService{
 
 	@Override
 	public String deleteCv(Long id) {
-		if(repo.findById(id).isPresent()) {
-			repo.deleteById(id);
+		Optional<CV> cv = repo.findById(id);
+		if(cv.isPresent()){
+			repo.delete(cv.get());
 			return CvConstants.delete;
 		}
 		return CvConstants.fail;

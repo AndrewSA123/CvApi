@@ -58,7 +58,7 @@ public class CvEndpoint implements ICvEndpoint{
 	}
 
 	@Override
-	@DeleteMapping("${endpoint.delete]")
+	@DeleteMapping("${endpoint.delete}")
 	public String deleteCv(@PathVariable("id") Long id) {
 		return service.deleteCv(id);
 	}
