@@ -52,7 +52,7 @@ public class CvEndpoint implements ICvEndpoint{
 
 		String tags = getTags(id);
 
-		sendNotification(tags, id);
+		if(!tags.equals("")){ sendNotification(tags, id); }
 
 		return service.createCv(id, CV);
 	}
