@@ -1,6 +1,7 @@
 package com.qa.service;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
@@ -62,6 +63,17 @@ public class CvService implements ICvService{
 		return ResponseEntity.ok()
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + repo.findById(id).get().getFileName() + "\"")
 				.body(new ByteArrayResource(repo.findById(id).get().getContents()));
+	}
+
+	@Override
+	public ResponseEntity<ByteArrayResource> getCvByUser(Long user_id) {
+		if(repo.getCvByUser(user_id).isPresent()) {
+			return ResponseEntity.ok()
+					.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + repo.getCvByUser(user_id).get().getFileName() + "\"")
+					.body(new ByteArrayResource(repo.getCvByUser(user_id).get().getContents()));
+		}
+		return (ResponseEntity<ByteArrayResource>) ResponseEntity.badRequest();
+		
 	}
 
 }

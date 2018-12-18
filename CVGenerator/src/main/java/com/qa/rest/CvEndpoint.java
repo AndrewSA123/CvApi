@@ -52,12 +52,11 @@ public class CvEndpoint implements ICvEndpoint{
 		if (!tags.equals("") && tags != null) {
 			sendNotification(tags, id);
 		}
-
 		return service.createCv(id, CV);
 	}
 
 	@Override
-	@DeleteMapping("${endpoint.delete]")
+	@DeleteMapping("${endpoint.delete}")
 	public String deleteCv(@PathVariable("id") Long id) {
 		return service.deleteCv(id);
 	}
