@@ -96,5 +96,11 @@ public class CvEndpoint implements ICvEndpoint{
 		return restTemplate.getForObject(getTags + id, String.class);
 	}
 
+	@Override
+	@GetMapping("${endpoint.getbyuser}")
+	public ResponseEntity<ByteArrayResource> getCvByUser(@PathVariable("user_id") Long user_id) {
+		return service.getCvByUser(user_id);
+	}
+
 
 }
