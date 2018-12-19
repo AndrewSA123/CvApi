@@ -12,7 +12,7 @@ import com.qa.persistence.domain.User;
 @Repository
 public interface IMySqlRepository extends CrudRepository<User, Long> {
 
-	@Query("SELECT u FROM Users u WHERE u.username = :username")
+	@Query("SELECT u FROM User u WHERE u.username = :username")
 	public Optional<User> getByUserName(@Param("username") String username);
 
 }
