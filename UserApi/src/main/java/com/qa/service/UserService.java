@@ -92,8 +92,8 @@ public class UserService implements IUserService {
 	}
 
 	private boolean notYetTagged(String tags, Long aId){
-        if(!tags.contains("#"+aId+"#") && tags != null){
-            if(!tags.contains("#"+aId)  && tags != null){
+        if(!tags.contains("#"+aId+"#") || tags == null){
+            if(!tags.contains("#"+aId)  || tags == null){
                 return true;
             }
         }
