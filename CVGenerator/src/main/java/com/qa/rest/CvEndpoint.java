@@ -49,7 +49,10 @@ public class CvEndpoint implements ICvEndpoint{
 	@PostMapping("${endpoint.create}")
 	public String createCv(@PathVariable("id") Long id, @RequestParam MultipartFile CV) throws IOException {
 		String tags = getTags(id);
-		if (!tags.equals("") && tags != null) {
+		if(tags == null) {
+			tags = "";
+		}
+		if (!tags.equals("")) {
 			sendNotification(tags, id);
 		}
 		return service.createCv(id, CV);
